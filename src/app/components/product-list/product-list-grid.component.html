@@ -18,6 +18,9 @@
                 </div>
                 <div class="clearfix"></div>
 
+                <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No product founds.
+                </div>
             </div>
 
             <div class="footer-pagination">
