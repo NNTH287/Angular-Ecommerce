@@ -10,9 +10,13 @@
     <tbody>
         <tr *ngFor="let product of products">
             <td class="alight-middle">
-                <img src="{{ product.imageUrl }}" alt="product image" height="50">
+                <a routerLink="products/{{ product.id }}">
+                    <img src="{{ product.imageUrl }}" alt="product image" height="50">
+                </a>
             </td>
-            <td class="alight-middle">{{ product.name }}</td>
+            <a routerLink="products/{{ product.id }}">
+                <td class="alight-middle">{{ product.name }}</td>
+            </a>
             <td class="alight-middle">{{ product.unitPrice | currency:'USD' }}</td>
             <td class="alight-middle">{{ product.unitsInStock }}</td>
         </tr>
