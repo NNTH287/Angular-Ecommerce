@@ -27,6 +27,12 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  updatePageSize(newPageSize: string) {
+    this.pageSize = +newPageSize;
+    this.pageNumber = 1;
+    this.listProducts();
+  }
+
   listProducts() {
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
 
