@@ -13,7 +13,7 @@
                         </a>
                         <h2>Duis aute irure dolor in reprehenderit in voluptate </h2>
                         <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
-                        <a href="#" class="primary-btn">Add to cart</a>
+                        <button class="btn-primary btn btn-sm" (click)="addToCart(product)">Add to cart</button>
                     </div>
                 </div>
                 <div class="clearfix"></div>
