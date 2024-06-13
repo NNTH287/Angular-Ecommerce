@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 import { Luv2ShopValidators } from 'src/app/validators/luv2-shop-validators';
 
@@ -42,9 +43,12 @@ export class CheckoutComponent implements OnInit {
   get creditCardSecurityCode() { return this.checkoutFormGroup.get('creditCard.securityCode'); }
 
   constructor(private formBuilder: FormBuilder, 
-              private formService: Luv2ShopFormService) { }
+              private formService: Luv2ShopFormService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.reviewCartDetails();
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl(
@@ -166,6 +170,15 @@ export class CheckoutComponent implements OnInit {
       data => {
         this.countries = data;
       }
+    );
+  }
+
+  reviewCartDetails() {
+    this.cartService.totalQuantity.subscribe(
+      data => this.totalQuantity = data
+    );
+    this.cartService.totalPrice.subscribe(
+      data => this.totalPrice = data
     );
   }
 
